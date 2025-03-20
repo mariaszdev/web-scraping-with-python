@@ -25,7 +25,7 @@ for table in tables:
         if len(columns) >= 3:
             # Extract only the text inside the <a> element (ignoring e.g. "Hörprobe")
             common_name_element = columns[1].find("a")
-            common_name = common_name_element.text.strip() if common_name_element else "Unknown"
+            common_name = common_name_element.text.strip() if common_name_element else ""
 
             # Extract and clean the scientific name
             full_scientific_name = columns[2].text.strip().split("\n")[
@@ -35,7 +35,7 @@ for table in tables:
                 r"\(.*?\)", "", full_scientific_name).strip()
 
             # Extract status (handling missing values)
-            status = columns[4].text.strip() if len(columns) > 4 else "Unknown"
+            status = columns[4].text.strip() if len(columns) > 4 else ""
 
             bird_list.append({
                 "commonName": common_name,
