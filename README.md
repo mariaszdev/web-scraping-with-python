@@ -57,11 +57,14 @@ python wiki_get_austrian_birds.py
 ### 🦜 `wiki_get_austrian_birds.py`
 
 This script scrapes bird species data from **[Wikipedia’s List of Birds of Austria](https://de.wikipedia.org/wiki/Liste_der_V%C3%B6gel_%C3%96sterreichs)**.  
-It extracts **common names, scientific names, and status** of birds found in Austria and saves the data as a **JSON file** inside the `export/` folder.
+It extracts **order, family, common names, scientific names, and status** of birds found in Austria and saves the data as a **JSON file** inside the `export/` folder.
 
 ✅ **Technologies Used:** `requests`, `BeautifulSoup`, `json`, `re`  
 ✅ **Output:** `export/birds-of-austria.json`
 
-To run the script: **`python wiki_get_austrian_birds.py`**
+To run the script:
+```sh
+python wiki_get_austrian_birds.py
+```
 
 ---
