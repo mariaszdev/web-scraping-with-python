@@ -23,19 +23,23 @@ for table in tables:
     for row in rows:
         columns = row.find_all("td")
         if len(columns) >= 3:
-            common_name = columns[1].text.strip()
+            # Extract only the text inside the <a> element (ignoring e.g. "Hörprobe")
+            common_name_element = columns[1].find("a")
+            common_name = common_name_element.text.strip() if common_name_element else "Unknown"
+
+            # Extract and clean the scientific name
             full_scientific_name = columns[2].text.strip().split("\n")[
                 0]  # Original name
-
-            # Remove everything inside parentheses, including the parentheses themselves
+            # Remove parentheses and content inside
             scientific_name = re.sub(
                 r"\(.*?\)", "", full_scientific_name).strip()
 
+            # Extract status (handling missing values)
             status = columns[4].text.strip() if len(columns) > 4 else "Unknown"
 
             bird_list.append({
                 "commonName": common_name,
-                "scientificName": scientific_name,  # canonical name
+                "scientificName": scientific_name,  # Cleaned canonical name
                 "status": status
             })
 
